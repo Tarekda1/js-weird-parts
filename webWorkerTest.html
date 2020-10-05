@@ -1,0 +1,20 @@
+<html>
+  <head></head>
+  <body>
+    <script>
+      if (window.Worker) {
+        var myWorker = new Worker("web-workers.js");
+        var msg = {
+          addThis: {
+            num1: 1,
+            num2: 2
+          }
+        };
+        myWorker.postMessage(msg);
+        myWorker.onmessage = e => {
+          console.log(e.data.result);
+        };
+      }
+    </script>
+  </body>
+</html>
