@@ -22,27 +22,27 @@
 
 //solution 2 using private variables and closure
 var opObj = function () {
-    var i = 0;
+  var i = 0;
+  //console.log(this);
+  var add = function (j) {
+    i += j;
     //console.log(this);
-    var add = function (j) {
-        i += j;
-        console.log(this);
-        return this;
-    };
+    return this;
+  };
 
-    var subs = function (j) {
-        i -= j;
-        //console.log(this);
-        return this;
-    }
+  var subs = function (j) {
+    i -= j;
+    console.log(this);
+    return this;
+  };
 
-    var print = function () {
-        console.log(`total: ${i}`);
-    }
+  var print = function () {
+    console.log(`total: ${i}`);
+  };
 
-    return { add: add, subs: subs }
+  return { add: add, subs: subs, print: print };
 };
 
-//var x1 = opObj();
-//x1.add(10).subs(5).print()
-//x1.add()
+var x1 = opObj();
+x1.add(10).subs(5).print();
+x1.add();
