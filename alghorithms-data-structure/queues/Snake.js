@@ -46,27 +46,41 @@ class Snake {
   }
   play() {
     const stdin = process.stdin;
-    stdin.setRawNode(true);
+    stdin.setRawMode(true);
     stdin.resume(true);
     stdin.setEncoding("utf8");
+    stdin.on("data", (keypress) => {
+      if (keypress === "w") {
+        this.move("up");
+      } else if (keypress === "d") {
+        this.move("right");
+      } else if (keypress === "a") {
+        this.move("left");
+      } else if (keypress === "x") {
+        this.move("down");
+      }
+      if (keypress === "\u0003") process.exit();
+      this.draw();
+    });
   }
 }
 
 const game = new Snake();
+game.play();
 
 //for (let n = 100; n > 0; n--) {
-game.move("up");
-game.draw();
-game.move("right");
-game.draw();
-game.move("right");
-game.draw();
-game.move("right");
-game.draw();
-game.move("down");
-game.draw();
-game.move("left");
-game.draw();
-game.move("down");
-game.draw();
+// game.move("up");
+// game.draw();
+// game.move("right");
+// game.draw();
+// game.move("right");
+// game.draw();
+// game.move("right");
+// game.draw();
+// game.move("down");
+// game.draw();
+// game.move("left");
+// game.draw();
+// game.move("down");
+// game.draw();
 //}
